@@ -1,4 +1,4 @@
-package handlers
+package handler
 
 import (
 	"chatApp/service"
@@ -62,12 +62,10 @@ func GetMessagesHandler(ctx *gin.Context, chatRoom *service.ChatRoom) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Missing id"})
 		return
 	}
-
 	msg, err := chatRoom.GetMessages(id)
 	if err != nil {
 		ctx.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
-
 	ctx.JSON(http.StatusOK, gin.H{"message": msg})
 }
